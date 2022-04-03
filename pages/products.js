@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ProductList from '../components/ProductList';
 import styles from '../styles/Home.module.css';
+import { useRouter } from 'next/router'
 
 const Products = () => {
 
     const [prodData, setProdData] = useState();
+
+    const router = useRouter();
 
     useEffect(() => {
         axios.get('http://localhost:5000/products')
@@ -16,6 +19,8 @@ const Products = () => {
                 console.log(error);
             })
     }, []);
+
+    console.log(router.query);
 
     if (prodData) {
         return (

@@ -1,6 +1,7 @@
 import styles from '../styles/Home.module.css';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Router from 'next/router'
 
 export default function Home() {
 
@@ -39,7 +40,13 @@ export default function Home() {
   };
 
   const handleClick = () => {
-    console.log("Vipul", activeCat, activeBrand);
+    Router.push({
+      pathname: '/products',
+      query: {
+        category: activeCat,
+        brand: activeBrand,
+      }
+    });
   };
 
   return (
