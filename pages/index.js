@@ -1,70 +1,62 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.css';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 export default function Home() {
 
-  const [filterData, setFilteData] = useState();
+  const [filterData, setFilterData] = useState();
   const [activeCat, setActiveCat] = useState([]);
-  const [activeSubCat, setActiveSubCat] = useState([]);
   const [activeBrand, setActiveBrand] = useState([]);
 
   useEffect(() => {
     axios.get('http://localhost:5000/filters')
       .then((response) => {
-        setFilteData(response.data);
+        setFilterData(response.data);
       })
       .catch((error) => {
         console.log(error);
       })
   }, []);
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    if (e.target.name === 'brand') {
-      setActiveBrand([...activeBrand, e.target.value])
-    }
-    else if (e.target.name === 'cat') {
-      setActiveCat([...activeCat, e.target.value])
-    }
-    else if (e.target.name === 'subCat') {
-      setActiveSubCat([...activeSubCat, e.target.value])
-    }
-  }
 
-  console.log("Vipul", activeCat, activeSubCat, activeBrand);
+  const handleSelect = (e) => {
+    if (e.target.name === 'brand') {
+      if (activeBrand.indexOf(e.target.value) === -1) {
+        setActiveBrand([...activeBrand, e.target.value])
+      }
+      else {
+        setActiveBrand(activeBrand.filter((brand) => (brand !== e.target.value)))
+      }
+    }
+    else if (e.target.name === 'category') {
+      if (activeCat.indexOf(e.target.value) === -1) {
+        setActiveCat([...activeCat, e.target.value])
+      }
+      else {
+        setActiveCat(activeCat.filter((category) => (category !== e.target.value)))
+      }
+    }
+  };
+
+  const handleClick = () => {
+    console.log("Vipul", activeCat, activeBrand);
+  };
 
   return (
     <div className={styles.container}>
       <div className={styles.firstDiv}>
-        <h2>
+        <h3>
           Category
-        </h2>
+        </h3>
         {filterData && filterData.searchFilter &&
           (
             filterData.searchFilter.categories.map((value, index) => {
               return (
                 <div key={index}>
                   <label>
-                    <input type="checkbox" value={value.name} onClick={(e) => handleClick(e)} name="cat" />
-                    {value.name}
+                    <input type="checkbox" value={value.name} onClick={handleSelect} name="category" />
+                    {` ${value.name}`}
                   </label>
-                  {value && value.subCategories &&
-                    (
-                      value.subCategories.map((val, index) => {
-                        return (
-                          <div key={index} className={styles.subCat}>
-                            <label>
-                              <input type="checkbox" value={val.name} onClick={(e) => handleClick(e)} name="subCat" />
-                              {val.name}
-                            </label>
-                          </div>
-                        )
-                      })
-                    )
-                  }
                 </div>
               )
             })
@@ -72,17 +64,17 @@ export default function Home() {
         }
       </div>
       <div className={styles.secondDiv}>
-        <h2>
+        <h3>
           Brands
-        </h2>
+        </h3>
         {filterData && filterData.searchFilter &&
           (
             filterData.searchFilter.brands.map((value, index) => {
               return (
                 <div key={index}>
                   <label>
-                    <input type="checkbox" value={value.name} onClick={(e) => handleClick(e)} name="brand" />
-                    {value.name}
+                    <input type="checkbox" value={value.name} onClick={handleSelect} name="brand" />
+                    {` ${value.name}`}
                   </label>
                 </div>
               )
@@ -90,6 +82,9 @@ export default function Home() {
           )
         }
       </div>
+      <button className={`${styles.btn}`} onClick={handleClick}>
+        Apply Filter
+      </button>
     </div>
   )
-}
+};

@@ -1,0 +1,120 @@
+.mainClass {
+    border-radius: 8px;
+    border: 0.5px solid #d6d6d6;
+    background-color: #fff;
+    width: 180px;
+    height: 330px;
+    margin: 0.5rem;
+    margin-right: 0;
+    position: relative;
+    max-width: 200px;
+}
+
+.mainClass>a {
+    text-decoration: none !important;
+}
+
+.mainClass>a:hover .title {
+    text-decoration: underline !important;
+    color: #1377c9;
+}
+
+.image {
+    margin: 0.5rem;
+    width: 160px;
+    height: 160px;
+}
+
+.price {
+    margin-right: 8px;
+    margin-left: 8px;
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    color: red;
+}
+
+.title {
+    margin-right: 8px;
+    margin-left: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.19;
+    margin-top: 4px;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    overflow: hidden;
+    color: black;
+    margin-top: 8px;
+}
+
+.description {
+    margin-right: 8px;
+    margin-left: 8px;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.19;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    overflow: hidden;
+}
+
+.rating, .ratingStar {
+    margin-right: 8px;
+    margin-left: 8px;
+    position: absolute;
+    bottom: 0.8rem;
+}
+
+.rating>path {
+    fill: darkgray;
+}
+
+.ratingStar>path {
+    fill: #1377c9;
+}
+
+.ratingCount {
+    font-size: 15px;
+    position: absolute;
+    bottom: 0.85rem;
+    right: 55px;
+    font-weight: 300;
+}
+
+.favDiv {
+    color: #000;
+    border: 2px solid #e7e7ea;
+    border-radius: 50%;
+    right: 8px;
+    top: 13px;
+    background: #fff;
+    width: 28px;
+    padding: 0;
+    height: 28px;
+    position: absolute;
+}
+
+.favDiv:hover {
+    border: 2px solid #1377c9;
+    color: #1377c9;
+    cursor: pointer;
+}
+
+.favorite {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 16px;
+    width: 16px;
+}
+
+@media screen and (max-width: 1279px) {
+    .mainClass {
+        margin-bottom: 1rem;
+    }
+}
