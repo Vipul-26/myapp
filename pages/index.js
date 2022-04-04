@@ -19,7 +19,6 @@ export default function Home() {
       })
   }, []);
 
-
   const handleSelect = (e) => {
     if (e.target.name === 'brand') {
       if (activeBrand.indexOf(e.target.value) === -1) {
@@ -89,7 +88,7 @@ export default function Home() {
           )
         }
       </div>
-      <button className={`${styles.btn}`} onClick={handleClick}>
+      <button className={`${styles.btn} ${activeCat.length > 0 || activeBrand.length > 0 ? '' : styles.disabled}`} onClick={handleClick}>
         Apply Filter
       </button>
     </div>
